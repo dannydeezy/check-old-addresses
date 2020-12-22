@@ -1,4 +1,4 @@
-# Recover some coins
+# Check old addresses for coins
 
 ### Testnet:
 Check addresses:
