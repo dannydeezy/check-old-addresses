@@ -31,6 +31,7 @@ const checkKeys = async (keys) => {
       addressObjects.push(utils.hexToAddresses(it, network))
     } catch (err) {
       console.log(`Skipping key ${key} due to error on addresses`)
+      console.dir(err)
       addressObjects.push(null)
     }
   }
