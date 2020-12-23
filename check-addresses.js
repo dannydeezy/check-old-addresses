@@ -28,7 +28,7 @@ const checkKeys = async (keys) => {
   const addressObjects = []
   for (const key of keys) {
     try {
-      addressObjects.push(utils.hexToAddresses(it, network))
+      addressObjects.push(utils.hexToAddresses(key, network))
     } catch (err) {
       console.log(`Skipping key ${key} due to error on addresses`)
       console.dir(err)
