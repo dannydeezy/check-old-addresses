@@ -25,10 +25,19 @@ const getKeysFromFilename = (filename) => {
 }
 
 const checkKeys = async (keys) => {
-  const addressObjects = keys.map(it => utils.hexToAddresses(it, network));
+  const addressObjects = []
+  for (const key of keys) {
+    try {
+      addressObjects.push(utils.hexToAddresses(it, network))
+    } catch (err) {
+      console.log(`Skipping key ${key} due to error on addresses`)
+      addressObjects.push(null)
+    }
+  }
   let allSpendableUtxos = []
   for (let i = 0; i < addressObjects.length; i++) {
     const addressObject = addressObjects[i]
+    if (!addressObject) continue
     console.log(`\nChecking private key at position ${i}:`)
     for (type of ['p2pkhCompressed', 'p2pkhUncompressed']) {
       const address = addressObject[type]
